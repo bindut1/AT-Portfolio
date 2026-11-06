@@ -544,7 +544,7 @@ html {
   pointer-events: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .to-top {
     right: 16px;
     bottom: 16px;

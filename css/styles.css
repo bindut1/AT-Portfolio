@@ -5,7 +5,8 @@
  * Desktop: every section is a 1366 x 768 artboard (the Canva page size).
  * Positions/sizes are design pixels (--x, --y, --w, --h) converted with
  * --u (1 design px), so the page scales exactly like the original.
- * Below 900px the sections switch to a stacked, readable mobile layout.
+ * Up to 1100px (tablets, small laptops) the sections switch to a stacked,
+ * readable layout: below that width the scaled artboard text gets too small.
  */
 
 :root {
@@ -22,7 +23,6 @@
   --font-impact: "Anton", Impact, "Arial Narrow", sans-serif;
   --font-body: "Be Vietnam Pro", system-ui, sans-serif;
   --font-label: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-list: "Figtree", "Be Vietnam Pro", system-ui, sans-serif;
 }
 
 *,
@@ -74,7 +74,7 @@ a {
 /* ---------- Artboard system ---------- */
 
 .page {
-  max-width: 1920px;
+  max-width: 2560px;
   margin: 0 auto;
 }
 
@@ -141,19 +141,6 @@ a {
 
 /* ---------- Typography ---------- */
 
-.label {
-  font-family: var(--font-label);
-  font-size: calc(16.6 * var(--u));
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.label--end {
-  text-align: right;
-}
-
 .title {
   font-family: var(--font-display);
   font-size: calc(146 * var(--u));
@@ -165,15 +152,23 @@ a {
   color: var(--blue);
 }
 
-.text {
-  font-size: calc(20 * var(--u));
-  line-height: 1.38;
-  text-align: justify;
-  hyphens: none;
+:root {
+  /* Shared body-text scale (design px at 1366 wide) */
+  --body-size: 19;
+  --body-leading: 1.58;
+}
+
+.text,
+.links,
+.jobs {
+  font-family: var(--font-body);
+  font-size: calc(var(--body-size) * var(--u));
+  line-height: var(--body-leading);
+  text-align: left;
 }
 
 .text + .text {
-  margin-top: calc(27 * var(--u));
+  margin-top: calc(22 * var(--u));
 }
 
 /* ---------- 1 & 10. Cover / Thank you ---------- */
@@ -198,10 +193,10 @@ a {
 .cover__title {
   position: absolute;
   left: 50%;
-  top: calc(169 * var(--u));
+  top: calc(174 * var(--u));
   z-index: -1;
   font-family: var(--font-impact);
-  font-size: calc(346 * var(--u));
+  font-size: calc(338 * var(--u));
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0;
@@ -209,12 +204,15 @@ a {
   white-space: nowrap;
   color: var(--orange);
   transform: translateX(-50%) scaleX(1.07);
+  /* re-centre the ink: P has a wider left side-bearing than O's right */
+  margin-left: -0.08cqw;
 }
 
 .cover--end .cover__title {
-  top: calc(172 * var(--u));
-  font-size: calc(310 * var(--u));
+  top: calc(171 * var(--u));
+  font-size: calc(312 * var(--u));
   transform: translateX(-50%) scaleX(1.105);
+  margin-left: 0.32cqw;
 }
 
 .cover__title .char {
@@ -274,11 +272,12 @@ a {
 /* ---------- 2. Hello ---------- */
 
 .hello__title {
-  line-height: 0.75;
+  font-size: calc(132 * var(--u));
+  line-height: 0.96;
 }
 
 .hello__role {
-  font-size: calc(16 * var(--u));
+  font-size: max(14px, calc(16 * var(--u)));
   font-weight: 800;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -288,7 +287,7 @@ a {
   display: flex;
   gap: calc(84 * var(--u));
   font-family: var(--font-label);
-  font-size: calc(16.8 * var(--u));
+  font-size: max(14px, calc(16.8 * var(--u)));
   font-weight: 300;
 }
 
@@ -305,12 +304,6 @@ a {
 
 .hello__meta a:hover {
   color: var(--orange-dark);
-}
-
-/* ---------- 3. About ---------- */
-
-.deco-clip--lg {
-  stroke-width: 1.4;
 }
 
 /* ---------- 4. Skills ---------- */
@@ -334,12 +327,12 @@ a {
   flex: none;
   width: calc(42 * var(--u));
   height: calc(62 * var(--u));
-  margin-right: calc(-12 * var(--u));
+  margin-right: calc(6 * var(--u));
   transform: translateY(calc(4 * var(--u)));
 }
 
 .block__strong {
-  margin: calc(18 * var(--u)) 0 0 calc(29 * var(--u));
+  margin: calc(24 * var(--u)) 0 0 calc(29 * var(--u));
   font-size: calc(21.2 * var(--u));
   font-weight: 800;
 }
@@ -373,14 +366,13 @@ a {
   font-family: var(--font-label);
   font-size: calc(19.5 * var(--u));
   white-space: nowrap;
-  box-shadow: inset 0 0 0 calc(3 * var(--u)) rgba(255, 255, 255, 0.0);
 }
 
 .tools {
   display: flex;
   align-items: center;
   gap: calc(36 * var(--u));
-  margin: calc(16 * var(--u)) 0 0 calc(8 * var(--u));
+  margin: calc(26 * var(--u)) 0 0 calc(8 * var(--u));
 }
 
 .tools img {
@@ -401,14 +393,24 @@ a {
 /* ---------- 5. Experience ---------- */
 
 .experience__title {
-  line-height: 0.8;
+  font-size: calc(132 * var(--u));
+  line-height: 0.96;
+}
+
+/* Barlow's Vietnamese capitals carry tall marks (0.89em above, 0.24em
+   below), so a line under one with a dot-below mark needs extra room. */
+.title .ln {
+  display: block;
+}
+
+.title .ln--gap {
+  margin-top: 0.22em;
 }
 
 .jobs {
-  font-family: var(--font-list);
+  /* the experience list keeps its original, smaller size */
   font-size: calc(17.4 * var(--u));
   line-height: calc(28.8 * var(--u));
-  color: var(--ink);
 }
 
 .job + .job {
@@ -443,42 +445,25 @@ a {
 /* ---------- 6. Featured ---------- */
 
 .featured__title {
-  line-height: 1.04;
+  line-height: 1.12;
   text-align: right;
 }
 
 /* ---------- 7 & 8. Projects ---------- */
 
 .project__heading {
-  font-size: calc(18.8 * var(--u));
+  margin-bottom: calc(8 * var(--u));
+  font-size: calc(22 * var(--u));
   font-weight: 800;
-  line-height: 1.5;
-}
-
-.project__heading--lg {
-  font-size: calc(27.5 * var(--u));
-  line-height: 1.6;
-  white-space: nowrap;
-}
-
-.text--loose {
-  font-size: calc(19.2 * var(--u));
-  line-height: calc(31.5 * var(--u));
-  text-align: left;
+  line-height: 1.4;
 }
 
 .text--loose + .text--loose {
-  margin-top: 0;
-}
-
-.text--xl {
-  font-size: calc(24.4 * var(--u));
-  line-height: calc(45.5 * var(--u));
+  margin-top: calc(12 * var(--u));
 }
 
 .links {
-  font-size: calc(19.2 * var(--u));
-  line-height: calc(31.5 * var(--u));
+  margin-top: calc(6 * var(--u));
 }
 
 .links a {
@@ -550,7 +535,7 @@ a {
 
 /* ---------- Mobile & tablet portrait ---------- */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .section {
     aspect-ratio: auto;
     container-type: normal;
@@ -571,10 +556,6 @@ a {
     top: auto;
     width: auto;
     height: auto;
-  }
-
-  .label {
-    display: none;
   }
 
   .sun {
@@ -602,7 +583,9 @@ a {
     white-space: normal;
   }
 
-  .text {
+  .text,
+  .links,
+  .jobs {
     font-size: 16px;
     line-height: 1.65;
   }
@@ -656,12 +639,12 @@ a {
   .cover__title,
   .cover--end .cover__title {
     top: 24%;
-    font-size: 25vw;
+    font-size: 25.2vw;
     transform: translateX(-50%) scaleX(1.05);
   }
 
   .cover--end .cover__title {
-    font-size: 20.5vw;
+    font-size: 24vw;
   }
 
   .cover__person {
@@ -676,8 +659,8 @@ a {
   .cover__note {
     left: 16px;
     right: 76px;
-    bottom: 26px;
-    font-size: 13px;
+    bottom: 22px;
+    font-size: 14px;
     line-height: 1.5;
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
   }
@@ -687,8 +670,10 @@ a {
   }
 
   /* Hello */
-  .hello__title {
-    line-height: 0.8;
+  .hello__title,
+  .experience__title {
+    font-size: clamp(60px, 17vw, 108px);
+    line-height: 0.96;
   }
 
   .hello__role {
@@ -724,11 +709,11 @@ a {
   .block__title .deco-clip {
     width: 30px;
     height: 44px;
-    margin-right: -6px;
+    margin-right: 4px;
   }
 
   .block__strong {
-    margin: 14px 0 0 22px;
+    margin: 22px 0 0 22px;
     font-size: 18px;
   }
 
@@ -757,7 +742,7 @@ a {
 
   .tools {
     gap: 22px;
-    margin: 18px 0 0;
+    margin: 24px 0 0;
   }
 
   .tools li img {
@@ -790,8 +775,8 @@ a {
   }
 
   .job__head p {
-    color: var(--blue);
     font-size: 14px;
+    font-weight: 400;
   }
 
   .job ul {
@@ -810,27 +795,19 @@ a {
 
   .featured__title {
     text-align: left;
-    line-height: 0.9;
+    line-height: 1.12;
   }
 
   /* Projects */
+  /* leave room for the dot-below mark of Ự / Ọ / Ụ in the titles above */
   .project__copy {
-    margin-top: 18px;
+    margin-top: 28px;
   }
 
-  .project__heading,
-  .project__heading--lg {
-    white-space: normal;
+  .project__heading {
     margin-bottom: 8px;
     font-size: 19px;
     line-height: 1.35;
-  }
-
-  .text--loose,
-  .text--xl,
-  .links {
-    font-size: 16px;
-    line-height: 1.65;
   }
 
   .text--loose + .text--loose {
@@ -876,11 +853,64 @@ a {
     width: 32px;
     height: 32px;
   }
+
+  /* Touch targets: at least 24px tall (WCAG 2.2 target size). */
+  .hello__meta a,
+  .contact__list a,
+  .cover__note a {
+    display: inline-block;
+    padding-block: 5px;
+  }
+
+  .links a {
+    display: inline-block;
+    padding-block: 2px;
+  }
 }
 
-@media (max-width: 900px) and (min-width: 600px) {
+@media (max-width: 380px) {
+  .contact__card {
+    padding: 24px 16px 20px;
+  }
+
+  .contact__list li {
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .contact__list svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 600px) {
   .section:not(.cover) {
     padding-left: max(40px, calc((100% - 640px) / 2));
     padding-right: max(40px, calc((100% - 640px) / 2));
+  }
+}
+
+/* Browsers without container query units (Safari < 16, Chrome < 105):
+   fall back to viewport units so the artboards still scale correctly. */
+@supports not (width: 1cqw) {
+  .section,
+  .section * {
+    --u: calc(min(100vw, 2560px) / 1366);
+  }
+
+  .cover__title {
+    margin-left: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .section,
+    .section * {
+      --u: 1px;
+    }
+
+    .fig * {
+      --u: calc(min(100vw - 40px, 420px) / var(--fw));
+    }
   }
 }

@@ -6,14 +6,14 @@
 (() => {
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const mobileQuery = window.matchMedia('(max-width: 900px)');
+  const mobileQuery = window.matchMedia('(max-width: 1100px)');
   const hasIO = 'IntersectionObserver' in window;
 
   /* ---------- Cover titles: split into animated letters ---------- */
 
   document.querySelectorAll('[data-split]').forEach((title) => {
     const text = title.textContent.trim();
-    title.setAttribute('aria-label', text);
+    if (!title.hasAttribute('aria-label')) title.setAttribute('aria-label', text);
     title.textContent = '';
     [...text].forEach((ch, i) => {
       const span = document.createElement('span');

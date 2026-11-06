@@ -7,16 +7,35 @@
   <meta name="description" content="Portfolio của Anh Thư — SEO Content Writer, Content Creator & Marketing, sinh viên Kinh doanh Quốc tế tại Đại học Greenwich Việt Nam.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;800&family=Figtree:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;800&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <meta name="theme-color" content="#ece5d8">
+  <link rel="canonical" href="https://bindut1.github.io/AT-Portfolio/">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://bindut1.github.io/AT-Portfolio/">
   <meta property="og:title" content="Nguyễn Lê Anh Thư — Portfolio">
   <meta property="og:description" content="SEO Content Writer · Content Creator · Marketing">
-  <meta property="og:image" content="assets/images/hello.webp">
+  <meta property="og:image" content="https://bindut1.github.io/AT-Portfolio/assets/images/hello.webp">
+  <meta property="og:locale" content="vi_VN">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nguyễn Lê Anh Thư",
+    "jobTitle": "SEO Content Writer",
+    "url": "https://bindut1.github.io/AT-Portfolio/",
+    "image": "https://bindut1.github.io/AT-Portfolio/assets/images/hello.webp",
+    "email": "mailto:anhthu2005qs@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Đà Nẵng", "addressCountry": "VN" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Greenwich Vietnam" },
+    "sameAs": ["https://www.linkedin.com/in/anh-thu"]
+  }
+  </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23ff6b4a'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Impact,Arial Narrow,sans-serif' font-size='30' fill='%231f4e8c'%3EAT%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/styles.css?v=20">
-  <link rel="stylesheet" href="css/motion.css?v=20">
+  <link rel="stylesheet" href="css/styles.css?v=31">
+  <link rel="stylesheet" href="css/motion.css?v=31">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="js/main.js?v=20" defer></script>
+  <script src="js/main.js?v=31" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#hello">Bỏ qua tới nội dung</a>
@@ -35,8 +54,8 @@
           <path d="M70 226c-14-22-44-30-66-20" stroke-dasharray="7 9"/>
         </g>
       </symbol>
-      <symbol id="clip" viewBox="0 0 48 70">
-        <path d="M33 10 11 52a8 8 0 0 0 14 7L44 21a12 12 0 0 0-21-11L3 50a17 17 0 0 0 30 15l9-17" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <symbol id="clip" viewBox="0 0 48 70" overflow="visible">
+        <path transform="translate(24 35) rotate(25) scale(0.9) translate(0 -31)" d="M4 16v30a4 4 0 0 1-8 0V8a8 8 0 0 1 16 0v42a12 12 0 0 1-24 0V20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
       </symbol>
     </defs>
   </svg>
@@ -75,23 +94,21 @@
     <!-- 1. Cover -->
     <section class="section cover" id="home" data-nav-section="home">
       <img class="cover__bg" src="assets/images/motion-bg.webp" alt="" aria-hidden="true" data-parallax="0.06">
-      <h1 class="cover__title" data-split>Portfolio</h1>
+      <h1 class="cover__title" data-split aria-label="Nguyễn Lê Anh Thư — Portfolio">Portfolio</h1>
       <img class="cover__person" src="assets/images/hero-cutout.webp" alt="Anh Thư khoanh tay, mỉm cười" width="898" height="1599" fetchpriority="high">
       <a class="cover__scroll" href="#hello" aria-label="Cuộn xuống phần giới thiệu"><span></span></a>
     </section>
 
     <!-- 2. Hello -->
     <section class="section paper hello" id="hello" data-nav-section="hello">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
 
       <div class="abs fig hello__fig" style="--x:735;--y:0;--w:631;--h:768">
         <span class="abs circle" style="--x:180;--y:246;--w:374"></span>
         <img class="abs fig__img" style="--x:0;--y:-163;--w:735;--h:1040" src="assets/images/hello.webp" alt="Anh Thư trong bộ jumpsuit denim, đeo túi tote" loading="lazy">
       </div>
 
-      <h2 class="abs title hello__title" style="--x:77;--y:176;--w:560">Xin chào,<br>mình là<br>Anh Thư</h2>
-      <p class="abs hello__role" style="--x:77;--y:554;--w:400">Content Creator | Marketing</p>
+      <h2 class="abs title hello__title" style="--x:77;--y:169;--w:560">Xin chào,<br>mình là<br>Anh Thư</h2>
+      <p class="abs hello__role" style="--x:77;--y:578;--w:400">Content Creator | Marketing</p>
       <ul class="abs hello__meta" style="--x:77;--y:668;--w:700">
         <li><a href="mailto:anhthu2005qs@gmail.com">anhthu2005qs@gmail.com</a></li>
         <li><a class="u" href="https://www.linkedin.com/in/anh-thu" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -101,19 +118,17 @@
 
     <!-- 3. About -->
     <section class="section paper about" id="about" data-nav-section="about">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
       <img class="abs sun" style="--x:919;--y:453;--w:548" src="assets/images/sun-swirl.webp" alt="" aria-hidden="true" loading="lazy">
 
       <div class="abs fig about__fig" style="--x:0;--y:0;--w:600;--h:768">
         <span class="abs circle" style="--x:41;--y:233;--w:492"></span>
-        <img class="abs fig__img" style="--x:-9;--y:-141;--w:608;--h:913" src="assets/images/about.webp" alt="Anh Thư cầm điện thoại, mặc áo trắng" loading="lazy">
         <svg class="abs deco-plane" style="--x:77;--y:107;--w:242;--h:252" aria-hidden="true"><use href="#plane"/></svg>
+        <img class="abs fig__img" style="--x:-9;--y:-141;--w:608;--h:913" src="assets/images/about.webp" alt="Anh Thư cầm điện thoại, mặc áo trắng" loading="lazy">
       </div>
 
-      <svg class="abs deco-clip deco-clip--lg" style="--x:543;--y:132;--w:112;--h:165" aria-hidden="true"><use href="#clip"/></svg>
+      <svg class="abs deco-clip deco-clip--lg" style="--x:478;--y:118;--w:136;--h:198" aria-hidden="true"><use href="#clip"/></svg>
       <h2 class="abs title" style="--x:611;--y:150;--w:520">Về mình</h2>
-      <div class="abs about__copy" style="--x:621;--y:325;--w:665">
+      <div class="abs about__copy" style="--x:621;--y:305;--w:665">
         <p class="text">Xin chào, mình là Anh Thư, một SEO Content Writer và sinh viên năm cuối ngành Kinh doanh Quốc tế tại Đại học Greenwich Việt Nam (tốt nghiệp 2027). Từ năm 2021, mình làm việc với vai trò freelancer và vừa kết thúc kỳ thực tập ở vị trí viết nội dung SEO tại TOS. Mình thích biến dữ liệu tìm kiếm thành những bài viết vừa hữu ích với người đọc, vừa đạt thứ hạng cao trên Google.</p>
         <p class="text">Mình có kinh nghiệm nghiên cứu từ khóa, phân tích search intent, lên outline và tối ưu on-page cho nhiều dạng nội dung. Mình mong muốn được đồng hành cùng một đội ngũ marketing để tiếp tục học hỏi và tạo ra những nội dung mang lại kết quả thật.</p>
         <p class="text">Portfolio này tổng hợp những dự án mình tự hào nhất. Hy vọng bạn sẽ tìm thấy điều mình có thể mang lại cho đội ngũ của bạn.</p>
@@ -122,8 +137,6 @@
 
     <!-- 4. Education, certificates, skills, tools -->
     <section class="section paper skills" id="skills" data-nav-section="skills">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
       <img class="abs sun sun--center" style="--x:380;--y:125;--w:577" src="assets/images/sun-swirl.webp" alt="" aria-hidden="true" loading="lazy">
 
       <div class="abs block" style="--x:77;--y:175;--w:560">
@@ -162,17 +175,15 @@
 
     <!-- 5. Experience -->
     <section class="section paper experience" id="experience" data-nav-section="experience">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
       <img class="abs sun" style="--x:919;--y:453;--w:548" src="assets/images/sun-swirl.webp" alt="" aria-hidden="true" loading="lazy">
 
       <div class="abs fig experience__fig" style="--x:0;--y:40;--w:560;--h:520">
         <span class="abs circle" style="--x:-72;--y:138;--w:330"></span>
         <svg class="abs deco-plane" style="--x:137;--y:10;--w:242;--h:252" aria-hidden="true"><use href="#plane"/></svg>
       </div>
-      <h2 class="abs title experience__title" style="--x:93;--y:170;--w:480">Kinh<br>nghiệm<br>làm việc</h2>
+      <h2 class="abs title experience__title" style="--x:93;--y:158;--w:480"><span class="ln">Kinh</span> <span class="ln">nghiệm</span> <span class="ln ln--gap">làm việc</span></h2>
 
-      <div class="abs jobs" style="--x:583;--y:166;--w:705">
+      <div class="abs jobs" style="--x:560;--y:146;--w:730">
         <article class="job">
           <header class="job__head"><h3>Thực tập sinh Content SEO – TopOnSeek</h3><p>8/2026 – 10/2026</p></header>
           <ul>
@@ -208,20 +219,16 @@
 
     <!-- 6. Featured projects divider -->
     <section class="section paper featured" id="projects" data-nav-section="projects">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
 
       <div class="abs fig featured__fig" style="--x:0;--y:0;--w:720;--h:768">
         <span class="abs circle" style="--x:181;--y:97;--w:532"></span>
         <img class="abs fig__img fig__img--flip" style="--x:0;--y:-245;--w:661;--h:992" src="assets/images/featured-bag.webp" alt="" aria-hidden="true" loading="lazy">
       </div>
-      <h2 class="abs title featured__title" style="--x:700;--y:208;--w:589">Dự án<br>tiêu biểu</h2>
+      <h2 class="abs title featured__title" style="--x:700;--y:202;--w:589">Dự án<br>tiêu biểu</h2>
     </section>
 
     <!-- 7. Project 1 -->
     <section class="section paper project project--one" id="project-1" data-nav-section="projects">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
       <img class="abs sun" style="--x:919;--y:453;--w:548" src="assets/images/sun-swirl.webp" alt="" aria-hidden="true" loading="lazy">
 
       <div class="abs fig project__fig" style="--x:0;--y:0;--w:560;--h:768">
@@ -236,46 +243,42 @@
         <p class="text text--loose">Trong thời gian thực tập tại TOS, mình phụ trách lên outline, viết bài và theo dõi ranking để cải thiện thứ hạng tìm kiếm. Nổi bật là dự án revamp bài viết với từ khóa “noel”: mình rà soát lại nội dung, tối ưu cấu trúc và on-page, đưa bài lên top 1 Google.</p>
         <p class="text text--loose">Các bài viết bên dưới đều do mình lên outline và viết:</p>
         <ul class="links">
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2025110501/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2025110501/</a></li>
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026090802/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2026090802/</a></li>
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026091403/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2026091403/</a></li>
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026101902/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2026101902/</a></li>
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026102001/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2026102001/</a></li>
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026102601/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2026102601/</a></li>
-          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026102202/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/news/topics/2026102202/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2025110501/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2025110501/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026090802/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2026090802/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026091403/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2026091403/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026101902/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2026101902/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026102001/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2026102001/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026102601/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2026102601/</a></li>
+          <li><a href="https://www.uniqlo.com/vn/vi/news/topics/2026102202/" target="_blank" rel="noopener">https://www.uniqlo.com/vn/vi/<wbr>news/topics/2026102202/</a></li>
         </ul>
       </div>
     </section>
 
     <!-- 8. Project 2 -->
     <section class="section paper project project--two" id="project-2" data-nav-section="projects">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
       <img class="abs sun" style="--x:919;--y:453;--w:548" src="assets/images/sun-swirl.webp" alt="" aria-hidden="true" loading="lazy">
 
       <div class="abs fig project__fig" style="--x:100;--y:0;--w:640;--h:768">
         <span class="abs circle" style="--x:30;--y:230;--w:528"></span>
-        <img class="abs fig__img" style="--x:77;--y:46;--w:542;--h:722" src="assets/images/project-2.webp" alt="Anh Thư đeo kính râm, váy trắng" loading="lazy">
         <svg class="abs deco-plane" style="--x:108;--y:57;--w:242;--h:252" aria-hidden="true"><use href="#plane"/></svg>
+        <img class="abs fig__img" style="--x:77;--y:46;--w:542;--h:722" src="assets/images/project-2.webp" alt="Anh Thư đeo kính râm, váy trắng" loading="lazy">
       </div>
 
       <h2 class="abs title project__title--two" style="--x:75;--y:126;--w:500">Dự án 2</h2>
-      <div class="abs project__copy" style="--x:683;--y:286;--w:605">
-        <h3 class="project__heading project__heading--lg">Xây dựng backlink và đăng bài cho Similac</h3>
-        <p class="text text--xl">Trong thời gian thực tập tại TOS, mình phụ trách mảng off-page SEO cho dự án Similac: tìm kiếm và làm việc với các website phù hợp để đăng bài, xây dựng backlink trỏ về website. Mình chọn trang đăng theo mức độ liên quan về chủ đề và chất lượng, đảm bảo nội dung đăng tải tự nhiên, đúng định hướng thương hiệu.</p>
+      <div class="abs project__copy" style="--x:683;--y:330;--w:605">
+        <h3 class="project__heading">Xây dựng backlink và đăng bài cho Similac</h3>
+        <p class="text">Trong thời gian thực tập tại TOS, mình phụ trách mảng off-page SEO cho dự án Similac: tìm kiếm và làm việc với các website phù hợp để đăng bài, xây dựng backlink trỏ về website. Mình chọn trang đăng theo mức độ liên quan về chủ đề và chất lượng, đảm bảo nội dung đăng tải tự nhiên, đúng định hướng thương hiệu.</p>
       </div>
     </section>
 
     <!-- 9. Contact -->
     <section class="section paper contact" id="contact" data-nav-section="contact">
-      <p class="abs label" style="--x:81;--y:74;--w:200">Portfolio</p>
-      <p class="abs label label--end" style="--x:1089;--y:74;--w:200">Anh Thu</p>
       <img class="abs sun" style="--x:954;--y:479;--w:548" src="assets/images/sun-swirl.webp" alt="" aria-hidden="true" loading="lazy">
 
       <div class="abs fig contact__fig" style="--x:0;--y:0;--w:560;--h:768">
         <span class="abs circle" style="--x:41;--y:233;--w:492"></span>
-        <img class="abs fig__img" style="--x:-81;--y:-116;--w:736;--h:885" src="assets/images/contact.webp" alt="Anh Thư vẫy tay chào" loading="lazy">
         <svg class="abs deco-plane" style="--x:77;--y:107;--w:242;--h:252" aria-hidden="true"><use href="#plane"/></svg>
+        <img class="abs fig__img" style="--x:-81;--y:-116;--w:736;--h:885" src="assets/images/contact.webp" alt="Anh Thư vẫy tay chào" loading="lazy">
       </div>
 
       <div class="abs contact__card" style="--x:558;--y:188;--w:731;--h:469">
@@ -287,7 +290,7 @@
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v.3l-10 6.4L2 5.8zm0 2.7 9.46 6.06a1 1 0 0 0 1.08 0L22 8.2v10.3a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5z"/></svg>
-            <a href="mailto:anhthu2005qs@gmail.com"><span class="sr-only">Email: </span>anhthu2005qs@gmail.com</a>
+            <a href="mailto:anhthu2005qs@gmail.com"><span class="sr-only">Email: </span>anhthu2005qs<wbr>@gmail.com</a>
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.5 2h15A2.5 2.5 0 0 1 22 4.5v15a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 19.5v-15A2.5 2.5 0 0 1 4.5 2zM5.3 9.4V19h3V9.4zm1.5-4.7a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zM10.4 9.4V19h3v-4.8c0-1.3.25-2.5 1.85-2.5s1.6 1.48 1.6 2.6V19h3v-5.3c0-2.6-.56-4.55-3.6-4.55a3.15 3.15 0 0 0-2.85 1.56V9.4z"/></svg>

@@ -9,8 +9,7 @@ dự án 2, liên hệ, thank you).
 
 - Plain HTML + CSS + a small vanilla JS file, no build step
 - Google Fonts: Barlow Condensed (headings), Be Vietnam Pro (body), Anton
-  (cover titles, stands in for Impact), Inter (labels, stands in for Helvetica Now),
-  Figtree (experience list, stands in for Proxima Nova)
+  (cover titles, stands in for Impact), Inter (labels, stands in for Helvetica Now)
 
 ## Run locally
 
