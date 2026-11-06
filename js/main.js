@@ -6,46 +6,56 @@
 (() => {
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const mobileQuery = window.matchMedia('(max-width: 900px)');
+  const mobileQuery = window.matchMedia('(max-width: 1100px)');
+  const hasIO = 'IntersectionObserver' in window;
 
-  /* ---------- Hero: split "portfolio" into animated letters ---------- */
+  /* ---------- Cover titles: split into animated letters ---------- */
 
-  const heroTitle = document.querySelector('.hero__title');
-  if (heroTitle) {
-    const text = heroTitle.textContent.trim();
-    heroTitle.textContent = '';
+  document.querySelectorAll('[data-split]').forEach((title) => {
+    const text = title.textContent.trim();
+    if (!title.hasAttribute('aria-label')) title.setAttribute('aria-label', text);
+    title.textContent = '';
     [...text].forEach((ch, i) => {
       const span = document.createElement('span');
       span.className = 'char';
       span.style.setProperty('--i', i);
       span.setAttribute('aria-hidden', 'true');
-      span.textContent = ch;
-      heroTitle.appendChild(span);
+      span.textContent = ch === ' ' ? ' ' : ch;
+      title.appendChild(span);
     });
-  }
+  });
 
-  // Kick off the hero intro once fonts are ready so letters don't jump.
-  const startIntro = () => root.classList.add('is-loaded');
+  const covers = [...document.querySelectorAll('.cover')];
+  const playCover = (cover) => {
+    cover.classList.add('is-in');
+    cover.querySelector('[data-split]')?.classList.add('is-in');
+  };
+
+  // Start once fonts are ready so letters don't jump.
+  const start = () => {
+    root.classList.add('is-loaded');
+    playCover(covers[0]);
+  };
   if (document.fonts && document.fonts.ready) {
-    Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1200))]).then(startIntro);
+    Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1200))]).then(start);
   } else {
-    startIntro();
+    start();
   }
 
   /* ---------- Scroll reveal ---------- */
 
   const revealGroups = [
-    ['.display, .intro__hello', 'up'],
-    ['.label-heading', 'track'],
-    ['.body-text, .note, .pdp__subhead, .benefits li, .bullets li', 'up'],
-    ['.crop, .pdp__shot, .social__img, .article__img, .idea-light__phone', 'image'],
-    ['.contact__card', 'up'],
-    ['.contact__sticker', 'pop'],
+    ['.circle', 'circle'],
+    ['.fig__img', 'photo'],
+    ['.deco-plane', 'fly'],
+    ['.title, .block__title, .contact__title', 'mask'],
+    ['.hello__role, .hello__meta, .text, .project__heading, .links li, .job, .block__strong, .block__sub, .contact__card, .contact__list li', 'up'],
+    ['.pills li, .tools li', 'pop'],
   ];
 
   const revealTargets = [];
   revealGroups.forEach(([selector, type]) => {
-    document.querySelectorAll(`.section:not(.hero) ${selector}`).forEach((el) => {
+    document.querySelectorAll(`.section:not(.cover) :is(${selector})`).forEach((el) => {
       el.dataset.reveal = type;
       revealTargets.push(el);
     });
@@ -53,40 +63,45 @@
 
   // Stagger items inside the same section in document order.
   document.querySelectorAll('.section').forEach((section) => {
-    const items = [...section.querySelectorAll('[data-reveal]')];
-    items.forEach((el, i) => el.style.setProperty('--d', `${Math.min(i * 90, 720)}ms`));
+    [...section.querySelectorAll('[data-reveal]')].forEach((el, i) => {
+      el.style.setProperty('--d', `${Math.min(i * 70, 900)}ms`);
+    });
   });
 
-  if ('IntersectionObserver' in window && !reduceMotion.matches) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
-    );
-    // Clipped images have no visible area, so they are triggered by their
-    // section instead of observing the image itself.
-    const clipped = (el) => el.dataset.reveal === 'image';
-    revealTargets.filter((el) => !clipped(el)).forEach((el) => io.observe(el));
-
+  if (hasIO && !reduceMotion.matches) {
+    // Elements inside a clipped figure may have no visible area, so every
+    // reveal is triggered by its section entering the viewport.
     const sectionIo = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.querySelectorAll('[data-reveal="image"]').forEach((el) => el.classList.add('is-visible'));
+          entry.target.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
+          if (entry.target.classList.contains('cover')) playCover(entry.target);
           sectionIo.unobserve(entry.target);
         });
       },
-      { threshold: 0.18 }
+      { threshold: mobileQuery.matches ? 0.08 : 0.22 }
     );
-    new Set(revealTargets.filter(clipped).map((el) => el.closest('.section'))).forEach((s) => sectionIo.observe(s));
+    document.querySelectorAll('.section').forEach((s) => sectionIo.observe(s));
+
+    // On mobile sections are tall, so long lists reveal item by item.
+    if (mobileQuery.matches) {
+      const itemIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.style.setProperty('--d', '0ms');
+            entry.target.classList.add('is-visible');
+            itemIo.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.1 }
+      );
+      revealTargets.filter((el) => el.dataset.reveal === 'up').forEach((el) => itemIo.observe(el));
+    }
   } else {
     revealTargets.forEach((el) => el.classList.add('is-visible'));
+    covers.forEach(playCover);
   }
 
   /* ---------- Navigation ---------- */
@@ -102,7 +117,7 @@
     if (open) nav.classList.remove('is-hidden');
     root.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    toggle.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
     menu.setAttribute('aria-hidden', String(!open));
   };
 
@@ -129,7 +144,7 @@
     navLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.navLink === id));
   };
 
-  if ('IntersectionObserver' in window) {
+  if (hasIO) {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -144,7 +159,6 @@
   /* ---------- Scroll-driven effects (one rAF loop) ---------- */
 
   const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
-  const heroSignature = document.querySelector('.hero__signature');
   let lastY = window.scrollY;
   let ticking = false;
 
@@ -157,34 +171,20 @@
 
     // Hide the nav while scrolling down, reveal it when scrolling up.
     if (!root.classList.contains('menu-open')) {
-      const goingDown = y > lastY + 4;
-      const goingUp = y < lastY - 4;
-      if (y < 120 || goingUp) nav.classList.remove('is-hidden');
-      else if (goingDown) nav.classList.add('is-hidden');
+      if (y < 120 || y < lastY - 4) nav.classList.remove('is-hidden');
+      else if (y > lastY + 4) nav.classList.add('is-hidden');
     }
     nav.classList.toggle('is-scrolled', y > 40);
     toTop.classList.toggle('is-visible', y > vh * 0.9);
     lastY = y;
 
-    if (reduceMotion.matches || mobileQuery.matches) {
-      ticking = false;
-      return;
-    }
-
-    // Background parallax: shift each image by a fraction of its height.
-    parallaxEls.forEach((img) => {
-      const section = img.closest('.section');
-      const rect = section.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > vh) return;
-      const p = (rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2);
-      const amount = parseFloat(img.dataset.parallax) * img.offsetHeight;
-      img.style.translate = `0 ${(p * amount).toFixed(1)}px`;
-    });
-
-    // Hero depth: title and signature drift at different speeds.
-    if (y < vh * 1.2) {
-      heroTitle.style.translate = `0 ${(y * 0.18).toFixed(1)}px`;
-      heroSignature.style.translate = `0 ${(y * 0.32).toFixed(1)}px`;
+    if (!reduceMotion.matches && !mobileQuery.matches) {
+      parallaxEls.forEach((img) => {
+        const rect = img.closest('.section').getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > vh) return;
+        const p = (rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2);
+        img.style.translate = `0 ${(p * parseFloat(img.dataset.parallax) * img.offsetHeight).toFixed(1)}px`;
+      });
     }
 
     ticking = false;
@@ -201,45 +201,6 @@
     { passive: true }
   );
   window.addEventListener('resize', onScroll);
-  mobileQuery.addEventListener('change', () => {
-    parallaxEls.forEach((img) => (img.style.translate = ''));
-    heroTitle.style.translate = '';
-    heroSignature.style.translate = '';
-  });
+  mobileQuery.addEventListener('change', () => parallaxEls.forEach((img) => (img.style.translate = '')));
   onScroll();
-
-  /* ---------- Lightbox for detailed mockups ---------- */
-
-  const lightbox = document.querySelector('[data-lightbox]');
-  const lightboxImg = document.querySelector('[data-lightbox-img]');
-
-  const openLightbox = (img) => {
-    lightboxImg.src = img.currentSrc || img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.setAttribute('aria-hidden', 'false');
-    root.classList.add('lightbox-open');
-    lightbox.querySelector('[data-lightbox-close]').focus({ preventScroll: true });
-  };
-
-  const closeLightbox = () => {
-    lightbox.setAttribute('aria-hidden', 'true');
-    root.classList.remove('lightbox-open');
-  };
-
-  document.querySelectorAll('img[data-zoom]').forEach((img) => {
-    img.setAttribute('tabindex', '0');
-    img.setAttribute('role', 'button');
-    img.addEventListener('click', () => openLightbox(img));
-    img.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(img);
-      }
-    });
-  });
-
-  lightbox.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
 })();
